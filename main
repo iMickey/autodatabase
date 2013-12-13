@@ -1,0 +1,120 @@
+#include <iostream>
+#include <fstream>
+#include <string.h>
+#include <string>
+using namespace std;
+
+typedef struct
+	{
+	string IdAuto;
+	string IdBranch;
+	string Mark;
+	string Model;
+	string Modification;
+	string Color;
+	string Year;
+	string Price;
+	string Transmission;
+	string EngineCapacity;
+	string EnginePower;
+	string ABS;
+	string Airbags;
+	string AudioSystem;
+	string TripComputer;
+	string GPS;
+	string ClimateControl;
+	string Alarm;
+	string PowerSteering;
+	}StructAuto;//Авто
+
+typedef struct
+	{
+	string IdBranch;
+	string Name;
+	string address;
+	string phone;
+	string administrator;
+	string login;
+	}StructBranch;//Филиал
+
+typedef struct
+	{
+	string IdOrder;
+	string IdAuto;
+	string IdManager;
+	string Date;
+	}StructOrder;//Заказ
+
+typedef struct
+	{
+	string IdManager;
+	string Date;
+	string name;
+	string passport;
+	string datebirth;
+	string sex;
+	string phone;
+	string login;
+	}StructManager;//Менеджер
+
+const int ACTION_AUTO = 1;
+const int ACTION_ALLAUTO = 2;
+
+const int ROLE_ADMIN[2] = {ACTION_AUTO,ACTION_ALLAUTO};
+const int ROLE_MANAGER[1] = {ACTION_AUTO};
+
+class User
+{
+	string IdUser;
+	string login;
+	int* IdRole;
+public:
+	User(int *ROLE)
+	{
+		delete IdRole;
+		IdRole = ROLE;
+	}
+	bool HasRight(int IdAction)
+	{
+	}
+};
+
+class Auto
+{
+	StructAuto InfoPass;
+public:
+	Auto(){};
+	Auto(StructAuto& Info)
+	{
+		delete &InfoPass;
+		InfoPass=Info;
+	}
+
+	void Read()
+	{
+			cout << "Введите марку:" << endl;
+			cin >> InfoPass.Mark;
+			cout << "Введите модель:" << endl;
+			cin >> InfoPass.Model;
+	}
+	void Print()
+		{
+			string TmpLine (InfoPass.Mark+" "+InfoPass.Model+"\n");
+			cout << TmpLine;
+		};
+	void PrintF(ofstream& ostr)
+	{
+		string TmpLine (InfoPass.Mark+" "+InfoPass.Model+"\n");
+		ostr << TmpLine;
+	}
+	void ReadF(ifstream& istr)
+	{
+		istr >> InfoPass.Mark >> InfoPass.Model;
+	}
+};
+
+void main()
+{
+	setlocale (LC_ALL,".1251");
+	ifstream Input("AutoData.txt");
+}
